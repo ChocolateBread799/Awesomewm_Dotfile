@@ -66,6 +66,10 @@ globalkeys = gears.table.join(
     ),
     awful.key({ modkey,           }, "q", function () awful.spawn(vscode) end,
     {description = "spawn code", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "f", function () awful.spawn(fm) end,
+              {description = "spawn file manager", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "d", function () awful.spawn(discord) end,
+              {description = "spawn discord", group = "launcher"}),
     awful.key({ modkey,           }, "w", function () awful.spawn(browser) end,
               {description = "spawn browser", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(music_player) end,
@@ -97,7 +101,6 @@ globalkeys = gears.table.join(
     end, {description = "mute audio", group = "audio"}),
 
     -- Dark toggle
-
     awful.key({ modkey,           }, "x", function () 
         if theme == themes[1] then
             awful.spawn.with_shell(gears.filesystem.get_configuration_dir() .. "scripts/dark")
