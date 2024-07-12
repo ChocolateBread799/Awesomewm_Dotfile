@@ -100,6 +100,16 @@ globalkeys = gears.table.join(
         function() awesome.emit_signal("volume_refresh") end)
     end, {description = "mute audio", group = "audio"}),
 
+    -- Brightness with brightnessctl
+    awful.key({}, "XF86MonBrightnessUp", function()
+        awful.spawn.easy_async_with_shell("brightnessctl set +25%",
+        function() awesome.emit_signal("brightness_refresh") end)
+    end, {description = "raise brightness by 25%", group = "brightness"}),
+    awful.key({}, "XF86MonBrightnessDown", function()
+        awful.spawn.easy_async_with_shell("brightnessctl set 25%-",
+        function() awesome.emit_signal("brightness_refresh") end)
+    end, {description = "lower brightness by 25%", group = "brightness"}),
+
     -- Dark toggle
     awful.key({ modkey,           }, "x", function () 
         if theme == themes[1] then
