@@ -2,7 +2,7 @@ local wezterm = require 'wezterm';
 
 return {
     front_end = "OpenGL",
-    font = wezterm.font({'SFMono Nerd Font', stretch="UltraCondensed", weight="Meidum"}),
+    font = wezterm.font('SFMono Nerd Font', {stretch="UltraCondensed", weight="Medium"}),
     font_size = 14,
     colors = {
       foreground = "#3e3e3e",

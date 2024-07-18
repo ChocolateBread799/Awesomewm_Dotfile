@@ -66,6 +66,10 @@ globalkeys = gears.table.join(
     ),
     awful.key({ modkey,           }, "q", function () awful.spawn(vscode) end,
     {description = "spawn code", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "f", function () awful.spawn(fm) end,
+              {description = "spawn file manager", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "d", function () awful.spawn(discord) end,
+              {description = "spawn discord", group = "launcher"}),
     awful.key({ modkey,           }, "w", function () awful.spawn(browser) end,
               {description = "spawn browser", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(music_player) end,
@@ -96,8 +100,17 @@ globalkeys = gears.table.join(
         function() awesome.emit_signal("volume_refresh") end)
     end, {description = "mute audio", group = "audio"}),
 
-    -- Dark toggle
+    -- Brightness with brightnessctl
+    awful.key({}, "XF86MonBrightnessUp", function()
+        awful.spawn.easy_async_with_shell("brightnessctl set +25%",
+        function() awesome.emit_signal("brightness_refresh") end)
+    end, {description = "raise brightness by 25%", group = "brightness"}),
+    awful.key({}, "XF86MonBrightnessDown", function()
+        awful.spawn.easy_async_with_shell("brightnessctl set 25%-",
+        function() awesome.emit_signal("brightness_refresh") end)
+    end, {description = "lower brightness by 25%", group = "brightness"}),
 
+    -- Dark toggle
     awful.key({ modkey,           }, "x", function () 
         if theme == themes[1] then
             awful.spawn.with_shell(gears.filesystem.get_configuration_dir() .. "scripts/dark")

@@ -2,8 +2,14 @@
 
 # My script for screenshots, im bad at scripting pls help to make smaller
 
+SCREENSHOTS_DIR=~/Pictures
 img="shot_$(date '+%m%d%H%M%S').png"
-file="$HOME/Pictures/$img"
+file="$SCREENSHOTS_DIR/$img"
+
+# Create directory if needed
+if [ ! -d "$SCREENSHOTS_DIR" ]; then
+    mkdir "$SCREENSHOTS_DIR"
+fi
 
 case $1 in
     "sel")
